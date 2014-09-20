@@ -2,37 +2,37 @@ FORMAT: 1A
 HOST: http://www.google.com
 
 # GameSayer
-GAmeDayer API is a game consumption service similar to youtube, but for the consumption of games instead of videos.
+GAmeSayer API is a game consumption service similar to youtube, but for the consumption of games instead of videos.
 
-# Group Games
-Games related resources of the **Notes API**
+# Group Users
+User related resources of the **GameSayer API**
 
-## Games Collection [/notes]
-### List all Game Types [GET]
+## Users Collection [/users]
+### List all Users [GET]
 + Response 200 (application/json)
 
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
+        [{ "id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard." ,
+        "credits":0,"subscribers":0,"channelLimit":100}
+        ,  "id": "ae1234bb", "name": "Watson", "email":'watson@gmail.com', "description":"War Veteran. Doctor." ,
+        "credits":0,"subscribers":0,"channelLimit":100}]
 
-### Create a Note [POST]
+### Create a User [POST]
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        { "name": "Sherlock Holmes" ,"email":"sherlock@gmail.com", description:"Loves Smoking. Hates Scotland Yard." }
 
 + Response 201 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+        { "id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard." ,"credits":0,"subscribers":0,"channelLimit":100}
+            
 
-## Note [/notes/{id}]
-A single Note object with all its details
+## User [/users/{userid}]
+A single User object with all its details
 
 + Parameters
     + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
 
-### Retrieve a Note [GET]
+### Retrieve a User [GET]
 + Response 200 (application/json)
 
     + Header
@@ -41,7 +41,24 @@ A single Note object with all its details
 
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            { "id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard.", "credits":0,"subscribers":0,"channelLimit":100}
+            
 
-### Remove a Note [DELETE]
-+ Response 204
+#Group Games
+
+##Games
+## Games Collection [/games]
+These are the games that are available on GameSayer. These games are just an abstract entity. They cant be player.
+In order to play them, these Games must be created by Users. An example is that QuizSpin is a Game, however it can only be played once a user
+puts content and customizes it according to his need.
+
+### List all Games [GET]
++ Response 200 (application/json)
+
+        [{ "id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard." ,
+        "credits":0,"subscribers":0,"channelLimit":100}
+        ,  "id": "ae1234bb", "name": "Watson", "email":'watson@gmail.com', "description":"War Veteran. Doctor." ,
+        "credits":0,"subscribers":0,"channelLimit":100}]
+
+
+            
