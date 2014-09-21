@@ -26,11 +26,11 @@ User related resources of the **GameSayer API**
         { "id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard." ,"credits":0,"subscribers":0,"channelLimit":100}
             
 
-## User [/users/{userid}]
+## User [/users/{userId}]
 A single User object with all its details
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + userId (required, string, `ae1234cc`) ... String `id` of the Note to perform action with. Has example value.
 
 ### Retrieve a User [GET]
 + Response 200 (application/json)
@@ -55,10 +55,64 @@ puts content and customizes it according to his need.
 ### List all Games [GET]
 + Response 200 (application/json)
 
-        [{ "id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard." ,
-        "credits":0,"subscribers":0,"channelLimit":100}
-        ,  "id": "ae1234bb", "name": "Watson", "email":'watson@gmail.com', "description":"War Veteran. Doctor." ,
-        "credits":0,"subscribers":0,"channelLimit":100}]
+        [
+        { 
+            "id": "eb1234a1", "name": "QuizSpin", "description":"Chance based quiz game. Kind of like a slots machine" ,
+        }
+        ,{
+            "id": "eb1234b1", "name": "Grail Hunter", "description":"Find the Grail. Answer the questions. Be awesome." 
+        }]
+        
+## User Games Collection [/users/{userId}/games/created]
+User Games are the games a user creates from a set of game types. These games are not games in the traditional sense of the term.
+These games represent some content. This content is in the form of questions and slides. When a user playes this "game", he is 
+essentially choosing to play said content. The manner in which he plays it (grail hunter/quizspin) is irrelevant.
 
+### List a particular User's Games [GET]
++ Response 200 (application/json)
 
+    + Body
+    
+            [{
+                "name": "QuizSpin",
+                "id":"ac1234ff",
+                "description":"Content on Martin Scorcese's famous movies",
+                "selectors":[],
+                "topics":["movies","entertainment"],
+                "likes":25,
+                "dislikes":2,
+                "shares":24,
+                "categories":["entertainment"],
+                "views":50,
+                "rewards":["house","tv"],
+                "tags":["indie","de niro","the departed"],
+                "userdata”:[
+                    {"user_id":1, "days_played":3, "km_clicks":9, "srt_score":17, "fin_score":45},
+                    {"user_id":2, "days_played":5, "km_clicks":6, "srt_score":14, "fin_score":58},
+                    {"user_id":3, "days_played":5, "km_clicks":10, "srt_score":26, "fin_score":77},
+                    {"user_id":4, "days_played":4, "km_clicks":8, "srt_score":27, "fin_score":62},
+                    {"user_id":5, "days_played":4, "km_clicks":10, "srt_score":43, "fin_score":97},
+                    {"user_id":6, "days_played":4, "km_clicks":5, "srt_score":20, "fin_score":58},
+                    {"user_id":7, "days_played":4, "km_clicks":5, "srt_score":9, "fin_score":85},
+                    {"user_id":8, "days_played":1, "km_clicks":10, "srt_score":24, "fin_score":85},
+                    {"user_id":9, "days_played":5, "km_clicks":7, "srt_score":41, "fin_score":79},
+                    {"user_id":10, "days_played":5, "km_clicks":9, "srt_score":17, "fin_score":66}
+                ]
+            }]
             
+### Create a particular User Game [POST]
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "name": "QuizSpin",
+                "description":"Content on Stanley Kubrick's famous movies",
+                "selectors":[],
+                "topics":["movies","entertainment"],
+                "categories":["entertainment"],
+                "rewards":["house","tv"],
+                "tags":["indie","space odessey"],
+            }
+
+
