@@ -11,9 +11,9 @@ User related resources of the **GameSayer API**
 ### List all Users [GET]
 + Response 200 (application/json)
 
-        [{ "id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard." ,
+        [{ "_id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard." ,
         "credits":0,"subscribers":0,"channelLimit":100}
-        ,  "id": "ae1234bb", "name": "Watson", "email":'watson@gmail.com', "description":"War Veteran. Doctor." ,
+        ,  "_id": "ae1234bb", "name": "Watson", "email":'watson@gmail.com', "description":"War Veteran. Doctor." ,
         "credits":0,"subscribers":0,"channelLimit":100}]
 
 ### Create a User [POST]
@@ -23,7 +23,7 @@ User related resources of the **GameSayer API**
 
 + Response 201 (application/json)
 
-        { "id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard." ,"credits":0,"subscribers":0,"channelLimit":100}
+        { "_id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard." ,"credits":0,"subscribers":0,"channelLimit":100}
             
 
 ## User [/users/{userId}]
@@ -41,7 +41,15 @@ A single User object with all its details
 
     + Body
 
-            { "id": "ae1234cc", "name": "Sherlock Holmes", "email":'sherlock@gmail.com', "description":"Loves Smoking. Hates Scotland Yard.", "credits":0,"subscribers":0,"channelLimit":100}
+            { 
+                "_id": "ae1234cc", 
+                "name": "Sherlock Holmes", 
+                "email":'sherlock@gmail.com', 
+                "description":"Loves Smoking. Hates Scotland Yard.", 
+                "credits":0,
+                "subscribers":0,
+                "channelLimit":100
+            }
             
 
 #Group Games
@@ -57,10 +65,10 @@ puts content and customizes it according to his need.
 
         [
         { 
-            "id": "eb1234a1", "name": "QuizSpin", "description":"Chance based quiz game. Kind of like a slots machine" ,
+            "_id": "eb1234a1", "name": "QuizSpin", "description":"Chance based quiz game. Kind of like a slots machine" ,
         }
         ,{
-            "id": "eb1234b1", "name": "Grail Hunter", "description":"Find the Grail. Answer the questions. Be awesome." 
+            "_id": "eb1234b1", "name": "Grail Hunter", "description":"Find the Grail. Answer the questions. Be awesome." 
         }]
         
 ## User Games Collection [/users/{userId}/games/created]
@@ -75,7 +83,7 @@ essentially choosing to play said content. The manner in which he plays it (grai
     
             [{
                 "name": "QuizSpin",
-                "id":"ac1234ff",
+                "_id":"ac1234ff",
                 "description":"Content on Martin Scorcese's famous movies",
                 "selectors":[],
                 "topics":["movies","entertainment"],
@@ -107,6 +115,7 @@ essentially choosing to play said content. The manner in which he plays it (grai
     
             {
                 "name": "QuizSpin",
+                "_id":"ac1234ff",
                 "description":"Content on Stanley Kubrick's famous movies",
                 "selectors":[],
                 "topics":["movies","entertainment"],
@@ -116,3 +125,64 @@ essentially choosing to play said content. The manner in which he plays it (grai
             }
 
 
+#Group Topics
+## Topics Collection [/topics]
+
+### List topics [GET]
++ Response 200 (application/json)
+
+    + Body
+        
+            [{
+                "name":"movies"
+                "games":[{
+                    "name": "QuizSpin",
+                    "_id":"ac1234ff",
+                    "description":"Content on Stanley Kubrick's famous movies",
+                    "author":{}
+                    "categories":["entertainment"]
+                }]
+            }]
+
+## Trending Topics Collection [/trendingtopics]
++ Response 200 (application/json)
+
+    + Body
+        
+            [{
+                "name":"indipop"
+                "games":[{
+                    "name": "QuizSpin",
+                    "_id":"ac1234ac",
+                    "description":"Content on Bollywood's most famous pop songs",
+                    "author":
+                    { 
+                        "_id": "ae1234cc", 
+                        "name": "Sherlock Holmes", 
+                        "email":'sherlock@gmail.com', 
+                        "description":"Loves Smoking. Hates Scotland Yard.", 
+                        "credits":0,
+                        "subscribers":0,
+                        "channelLimit":100
+                    }
+                    "categories":["entertainment"]
+                }]
+            },{
+                "name":"yoyo honey singh"
+                "games":[{
+                    "name": "QuizSpin",
+                    "_id":"ab1234bc",
+                    "description":"Content on Bollywood's shittiest songs",
+                    "author":
+                    { 
+                        "_id": "ae1234cc", 
+                        "name": "Sherlock Holmes", 
+                        "email":'sherlock@gmail.com', 
+                        "description":"Loves Smoking. Hates Scotland Yard.", 
+                        "credits":0,
+                        "subscribers":0,
+                        "channelLimit":100
+                    }
+                    "categories":["entertainment"]
+                }]
+            }]
