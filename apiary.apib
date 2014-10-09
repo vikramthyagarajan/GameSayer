@@ -71,12 +71,12 @@ puts content and customizes it according to his need.
             "_id": "eb1234b1", "name": "Grail Hunter", "description":"Find the Grail. Answer the questions. Be awesome." 
         }]
         
-## User Games Collection [/users/{userId}/games/created]
+## User Created Games Collection [/users/{userId}/games/created]
 User Games are the games a user creates from a set of game types. These games are not games in the traditional sense of the term.
 These games represent some content. This content is in the form of questions and slides. When a user playes this "game", he is 
 essentially choosing to play said content. The manner in which he plays it (grail hunter/quizspin) is irrelevant.
 
-### List a particular User's Games [GET]
+### List a particular User's Created Games [GET]
 + Response 200 (application/json)
 
     + Body
@@ -124,6 +124,76 @@ essentially choosing to play said content. The manner in which he plays it (grai
                 "tags":["indie","space odessey"],
             }
 
+## User Active Games Collection [/users/{userId}/games/active]
+These are the Games that the user is actively playing/ not finished yet.
+
+### List a particular User's Active Games [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "name": "QuizSpin",
+                "_id":"ac1234ff",
+                "description":"Content on Martin Scorcese's famous movies",
+                "selectors":[],
+                "topics":["movies","entertainment"],
+                "likes":25,
+                "dislikes":2,
+                "shares":24,
+                "categories":["entertainment"],
+                "views":50,
+                "rewards":["house","tv"],
+                "tags":["indie","de niro","the departed"],
+                "userdata”:[
+                    {"user_id":1, "days_played":3, "km_clicks":9, "srt_score":17, "fin_score":45},
+                    {"user_id":2, "days_played":5, "km_clicks":6, "srt_score":14, "fin_score":58},
+                    {"user_id":3, "days_played":5, "km_clicks":10, "srt_score":26, "fin_score":77},
+                    {"user_id":4, "days_played":4, "km_clicks":8, "srt_score":27, "fin_score":62},
+                    {"user_id":5, "days_played":4, "km_clicks":10, "srt_score":43, "fin_score":97},
+                    {"user_id":6, "days_played":4, "km_clicks":5, "srt_score":20, "fin_score":58},
+                    {"user_id":7, "days_played":4, "km_clicks":5, "srt_score":9, "fin_score":85},
+                    {"user_id":8, "days_played":1, "km_clicks":10, "srt_score":24, "fin_score":85},
+                    {"user_id":9, "days_played":5, "km_clicks":7, "srt_score":41, "fin_score":79},
+                    {"user_id":10, "days_played":5, "km_clicks":9, "srt_score":17, "fin_score":66}
+                ]
+            }]
+            
+## User Recent Games Collection [/users/{userId}/games/recent]
+A list of Games the user has recently played
+
+### List a particular User's Created Games [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "name": "QuizSpin",
+                "_id":"ac1234ff",
+                "description":"Content on Martin Scorcese's famous movies",
+                "selectors":[],
+                "topics":["movies","entertainment"],
+                "likes":25,
+                "dislikes":2,
+                "shares":24,
+                "categories":["entertainment"],
+                "views":50,
+                "rewards":["house","tv"],
+                "tags":["indie","de niro","the departed"],
+                "userdata”:[
+                    {"user_id":1, "days_played":3, "km_clicks":9, "srt_score":17, "fin_score":45},
+                    {"user_id":2, "days_played":5, "km_clicks":6, "srt_score":14, "fin_score":58},
+                    {"user_id":3, "days_played":5, "km_clicks":10, "srt_score":26, "fin_score":77},
+                    {"user_id":4, "days_played":4, "km_clicks":8, "srt_score":27, "fin_score":62},
+                    {"user_id":5, "days_played":4, "km_clicks":10, "srt_score":43, "fin_score":97},
+                    {"user_id":6, "days_played":4, "km_clicks":5, "srt_score":20, "fin_score":58},
+                    {"user_id":7, "days_played":4, "km_clicks":5, "srt_score":9, "fin_score":85},
+                    {"user_id":8, "days_played":1, "km_clicks":10, "srt_score":24, "fin_score":85},
+                    {"user_id":9, "days_played":5, "km_clicks":7, "srt_score":41, "fin_score":79},
+                    {"user_id":10, "days_played":5, "km_clicks":9, "srt_score":17, "fin_score":66}
+                ]
+            }]
+            
 
 #Group Topics
 ## Topics Collection [/topics]
